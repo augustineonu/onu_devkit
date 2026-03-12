@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:drugstoc_mobile/core/theme/app_colors.dart' show AppColors;
 
-class CustomButton extends StatelessWidget {
+class AppButton extends StatelessWidget {
   final String title;
   final VoidCallback? onPressed;
   final bool isLoading;
@@ -19,7 +18,7 @@ class CustomButton extends StatelessWidget {
   final Widget? suffixIcon;
   final Color? borderColor;
 
-  const CustomButton({
+  const AppButton({
     super.key,
     required this.title,
     this.onPressed,
@@ -40,9 +39,12 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final bool isDisabled = onPressed == null || isLoading;
-    final Color resolvedBg = backgroundColor ?? AppColors.primaryLight;
-    final Color resolvedText = textColor ?? Colors.white;
+
+    final Color resolvedBg = backgroundColor ?? theme.colorScheme.primary;
+    final Color resolvedText = textColor ?? theme.colorScheme.onPrimary;
 
     return GestureDetector(
       onTap: isDisabled ? null : onPressed,
