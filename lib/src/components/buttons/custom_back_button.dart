@@ -24,13 +24,13 @@ class CustomBackButton extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(padding ?? 12),
         decoration: BoxDecoration(
-          color: backgroundColor ?? const Color(0xffF4F4F5),
+          color: backgroundColor ?? Theme.of(context).cardColor,
           shape: BoxShape.circle,
         ),
         child: Icon(
           Icons.arrow_back_ios_new_rounded,
           size: iconSize ?? 20.sp,
-          color: iconColor ?? Colors.black,
+          color: iconColor ?? Theme.of(context).iconTheme.color,
         ),
       ),
     );
