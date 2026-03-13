@@ -166,7 +166,7 @@ extension BuildContextExt on BuildContext {
   void showErrorSnackBar(String message) {
     showSnackBar(
       message,
-      backgroundColor: const Color(0xFFEF4444), // AppColors.error
+      backgroundColor: theme.colorScheme.error,
       textStyle: const TextStyle(
         color: Colors.white,
         fontWeight: FontWeight.w500,
@@ -188,7 +188,7 @@ extension BuildContextExt on BuildContext {
     showSnackBar(
       message,
       duration: const Duration(seconds: 2),
-      backgroundColor: const Color(0xFF22C55E), // AppColors.green500
+      backgroundColor: const Color(0xFF22C55E), // Generic success green
       textStyle: const TextStyle(
         color: Colors.white,
         fontWeight: FontWeight.w500,
