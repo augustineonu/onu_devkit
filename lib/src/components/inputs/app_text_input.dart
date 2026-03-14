@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:onu_devkit/src/theme/app_theme_extension.dart';
+import 'package:onu_devkit/src/tokens/app_radius.dart';
 
 class AppTextInput extends StatefulWidget {
   final TextEditingController? controller;
@@ -115,6 +116,7 @@ class _AppTextInputState extends State<AppTextInput> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).extension<AppThemeExtension>()!;
     final textController = widget.controller ?? _internalController!;
     final displayLabel = widget.labelText ?? widget.label;
 
@@ -162,9 +164,9 @@ class _AppTextInputState extends State<AppTextInput> {
                     widget.labelStyle ??
                     Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: Theme.of(context).colorScheme.onSurfaceVariant,
-                      fontSize: 14.sp,
+                      fontSize: 14,
                     ) ??
-                    TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500),
+                    TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
               ),
               const SizedBox(width: 8.0),
               if (widget.isInputOptional == false)
@@ -173,7 +175,7 @@ class _AppTextInputState extends State<AppTextInput> {
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     color: Theme.of(context).colorScheme.error,
                     fontWeight: FontWeight.w500,
-                    fontSize: 14.sp,
+                    fontSize: 14,
                   ),
                 ),
             ],
@@ -183,7 +185,8 @@ class _AppTextInputState extends State<AppTextInput> {
         AnimatedContainer(
           duration: const Duration(milliseconds: 200),
           decoration: BoxDecoration(
-            borderRadius: widget.borderRadius ?? BorderRadius.circular(90.0),
+            borderRadius:
+                widget.borderRadius ?? BorderRadius.circular(AppRadius.medium),
             boxShadow: _isFocused
                 ? [
                     BoxShadow(
@@ -220,18 +223,19 @@ class _AppTextInputState extends State<AppTextInput> {
                     color: Theme.of(
                       context,
                     ).colorScheme.onSurfaceVariant.withValues(alpha: 0.4),
-                    fontSize: 14.sp,
+                    fontSize: 14,
                   ),
               // errorStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
               // color: AppColors.error,
-              // fontSize: 12.sp,
+              // fontSize: 12,
               // ),
               errorMaxLines: 2,
               border:
                   widget.border ??
                   OutlineInputBorder(
                     borderRadius:
-                        widget.borderRadius ?? BorderRadius.circular(90.0),
+                        widget.borderRadius ??
+                        BorderRadius.circular(theme.inputRadius),
                     borderSide: BorderSide(
                       color: Theme.of(context).dividerColor,
                       width: 1,
@@ -241,7 +245,8 @@ class _AppTextInputState extends State<AppTextInput> {
                   widget.enabledBorder ??
                   OutlineInputBorder(
                     borderRadius:
-                        widget.borderRadius ?? BorderRadius.circular(90.0),
+                        widget.borderRadius ??
+                        BorderRadius.circular(theme.inputRadius),
                     borderSide: BorderSide(
                       color: Theme.of(context).dividerColor,
                       width: 1,
@@ -251,7 +256,8 @@ class _AppTextInputState extends State<AppTextInput> {
                   widget.focusedBorder ??
                   OutlineInputBorder(
                     borderRadius:
-                        widget.borderRadius ?? BorderRadius.circular(90.0),
+                        widget.borderRadius ??
+                        BorderRadius.circular(theme.inputRadius),
                     borderSide: BorderSide(
                       color: Theme.of(context).colorScheme.primary,
                       width: 1.5,
@@ -261,7 +267,8 @@ class _AppTextInputState extends State<AppTextInput> {
                   widget.errorBorder ??
                   OutlineInputBorder(
                     borderRadius:
-                        widget.borderRadius ?? BorderRadius.circular(90.0),
+                        widget.borderRadius ??
+                        BorderRadius.circular(theme.inputRadius),
                     borderSide: BorderSide(
                       color: Theme.of(context).colorScheme.error,
                       width: 1,
@@ -271,7 +278,8 @@ class _AppTextInputState extends State<AppTextInput> {
                   widget.focusedErrorBorder ??
                   OutlineInputBorder(
                     borderRadius:
-                        widget.borderRadius ?? BorderRadius.circular(90.0),
+                        widget.borderRadius ??
+                        BorderRadius.circular(theme.inputRadius),
                     borderSide: BorderSide(
                       color: Theme.of(context).colorScheme.error,
                       width: 1.5,
@@ -287,7 +295,7 @@ class _AppTextInputState extends State<AppTextInput> {
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
               color: Theme.of(context).colorScheme.onSurface,
               fontWeight: FontWeight.w500,
-              fontSize: 14.sp,
+              fontSize: 14,
             ),
             obscureText: widget.obscureText,
             keyboardType: widget.maxLines! > 1
@@ -315,7 +323,7 @@ class _AppTextInputState extends State<AppTextInput> {
               _errorText ?? widget.errorText!,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                 color: Theme.of(context).colorScheme.error,
-                fontSize: 12.sp,
+                fontSize: 12,
               ),
               textAlign: TextAlign.left,
             ),

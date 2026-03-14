@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 /// A searchable dropdown that shows a modal bottom sheet with a search field
 /// and a scrollable list of options.
@@ -49,7 +48,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
       useSafeArea: true,
       backgroundColor: Colors.white,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       builder: (ctx) => _PickerSheet<T>(
         items: widget.items,
@@ -84,9 +83,9 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
                   style:
                       Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: Theme.of(context).colorScheme.onSurfaceVariant,
-                        fontSize: 14.sp,
+                        fontSize: 14,
                       ) ??
-                      TextStyle(fontSize: 14.sp),
+                      TextStyle(fontSize: 14),
                 ),
                 const SizedBox(width: 8),
                 if (!widget.isInputOptional)
@@ -94,7 +93,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
                     '*',
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.error,
-                      fontSize: 14.sp,
+                      fontSize: 14,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -109,10 +108,10 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
                 fieldState.didChange(_selected);
               },
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(90.r),
+                  borderRadius: BorderRadius.circular(90),
                   border: Border.all(
                     color: fieldState.hasError
                         ? Theme.of(context).colorScheme.error
@@ -129,7 +128,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
                               ? Theme.of(context).colorScheme.onSurface
                               : Theme.of(context).colorScheme.onSurfaceVariant
                                     .withValues(alpha: 0.5),
-                          fontSize: 14.sp,
+                          fontSize: 14,
                         ),
                       ),
                     ),
@@ -143,12 +142,12 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
             ),
             if (fieldState.hasError)
               Padding(
-                padding: EdgeInsets.only(top: 8.h, left: 16.w),
+                padding: EdgeInsets.only(top: 8, left: 16),
                 child: Text(
                   fieldState.errorText!,
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.error,
-                    fontSize: 12.sp,
+                    fontSize: 12,
                   ),
                 ),
               ),
@@ -211,20 +210,20 @@ class _PickerSheetState<T> extends State<_PickerSheet<T>> {
         mainAxisSize: MainAxisSize.min,
         children: [
           // Drag handle
-          SizedBox(height: 12.h),
+          SizedBox(height: 12),
           Container(
-            width: 40.w,
-            height: 4.h,
+            width: 40,
+            height: 4,
             decoration: BoxDecoration(
               color: Theme.of(context).dividerColor.withValues(alpha: 0.5),
-              borderRadius: BorderRadius.circular(2.r),
+              borderRadius: BorderRadius.circular(2),
             ),
           ),
-          SizedBox(height: 16.h),
+          SizedBox(height: 16),
 
           // Search field
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            padding: EdgeInsets.symmetric(horizontal: 16),
             child: TextField(
               controller: _searchController,
               autofocus: true,
@@ -234,7 +233,7 @@ class _PickerSheetState<T> extends State<_PickerSheet<T>> {
                   color: Theme.of(
                     context,
                   ).colorScheme.onSurfaceVariant.withValues(alpha: 0.5),
-                  fontSize: 14.sp,
+                  fontSize: 14,
                 ),
                 prefixIcon: Icon(
                   Icons.search,
@@ -245,14 +244,14 @@ class _PickerSheetState<T> extends State<_PickerSheet<T>> {
                   context,
                 ).colorScheme.surfaceContainerHighest,
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12.r),
+                  borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none,
                 ),
               ),
             ),
           ),
 
-          SizedBox(height: 8.h),
+          SizedBox(height: 8),
 
           // List
           ConstrainedBox(
@@ -261,12 +260,12 @@ class _PickerSheetState<T> extends State<_PickerSheet<T>> {
             ),
             child: _filtered.isEmpty
                 ? Padding(
-                    padding: EdgeInsets.all(24.h),
+                    padding: EdgeInsets.all(24),
                     child: Text(
                       'No results found.',
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.onSurfaceVariant,
-                        fontSize: 14.sp,
+                        fontSize: 14,
                       ),
                     ),
                   )
@@ -292,7 +291,7 @@ class _PickerSheetState<T> extends State<_PickerSheet<T>> {
                             fontWeight: isSelected
                                 ? FontWeight.w600
                                 : FontWeight.normal,
-                            fontSize: 14.sp,
+                            fontSize: 14,
                           ),
                         ),
                         trailing: isSelected
@@ -306,7 +305,7 @@ class _PickerSheetState<T> extends State<_PickerSheet<T>> {
                     },
                   ),
           ),
-          SizedBox(height: 24.h),
+          SizedBox(height: 24),
         ],
       ),
     );

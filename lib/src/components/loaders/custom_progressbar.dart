@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomProgressBar extends StatelessWidget {
   final double value;
@@ -25,7 +24,7 @@ class CustomProgressBar extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(borderRadius ?? 10),
       child: SizedBox(
-        height: height ?? 5.h,
+        height: height ?? 5,
         child: LinearProgressIndicator(
           value: value / totalSteps,
           backgroundColor:
@@ -33,7 +32,7 @@ class CustomProgressBar extends StatelessWidget {
           valueColor: AlwaysStoppedAnimation<Color>(
             progressColor ?? theme.colorScheme.primary,
           ),
-          minHeight: height ?? 5.h,
+          minHeight: height ?? 5,
         ),
       ),
     );
