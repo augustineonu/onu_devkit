@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:onu_devkit/src/tokens/app_radius.dart';
 
 class AppButton extends StatelessWidget {
   final String title;
@@ -28,7 +28,7 @@ class AppButton extends StatelessWidget {
     this.loadingColor,
     this.fontSize,
     this.fontWeight,
-    this.borderRadius = 40,
+    this.borderRadius = AppRadius.medium,
     this.width,
     this.height,
     this.padding,
@@ -50,9 +50,8 @@ class AppButton extends StatelessWidget {
       onTap: isDisabled ? null : onPressed,
       child: Container(
         width: width ?? double.infinity,
-        height: height ?? 45.h,
-        padding:
-            padding ?? EdgeInsets.symmetric(vertical: 10.h, horizontal: 24.w),
+        height: height ?? 45,
+        padding: padding ?? EdgeInsets.symmetric(vertical: 10, horizontal: 24),
         decoration: BoxDecoration(
           color: isDisabled ? resolvedBg.withValues(alpha: 0.6) : resolvedBg,
           borderRadius: BorderRadius.circular(borderRadius),
@@ -61,8 +60,8 @@ class AppButton extends StatelessWidget {
         child: isLoading
             ? Center(
                 child: SizedBox(
-                  height: 20.h,
-                  width: 20.h,
+                  height: 20,
+                  width: 20,
                   child: CircularProgressIndicator(
                     strokeWidth: 2.5,
                     valueColor: AlwaysStoppedAnimation<Color>(
@@ -76,15 +75,12 @@ class AppButton extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  if (prefixIcon != null) ...[
-                    prefixIcon!,
-                    SizedBox(width: 8.w),
-                  ],
+                  if (prefixIcon != null) ...[prefixIcon!, SizedBox(width: 8)],
                   Flexible(
                     child: Text(
                       title,
                       style: TextStyle(
-                        fontSize: fontSize ?? 16.sp,
+                        fontSize: fontSize ?? 16,
                         fontWeight: fontWeight ?? FontWeight.w600,
                         color: isDisabled
                             ? resolvedText.withValues(alpha: 0.6)
@@ -95,10 +91,7 @@ class AppButton extends StatelessWidget {
                       maxLines: 1,
                     ),
                   ),
-                  if (suffixIcon != null) ...[
-                    SizedBox(width: 8.w),
-                    suffixIcon!,
-                  ],
+                  if (suffixIcon != null) ...[SizedBox(width: 8), suffixIcon!],
                 ],
               ),
       ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomBackButton extends StatelessWidget {
   final VoidCallback? onPressed;
@@ -29,7 +28,7 @@ class CustomBackButton extends StatelessWidget {
         ),
         child: Icon(
           Icons.arrow_back_ios_new_rounded,
-          size: iconSize ?? 20.sp,
+          size: iconSize ?? 20,
           color: iconColor ?? Theme.of(context).iconTheme.color,
         ),
       ),
