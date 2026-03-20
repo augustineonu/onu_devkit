@@ -56,6 +56,43 @@ AppTextInput(
 )
 ```
 
+## Theme Access Rule
+
+### Problem
+`get` (GetX) and `onu_devkit` both add extension methods on `BuildContext`
+with the same names (`textTheme`, `colorScheme`, etc.).
+
+This causes a compiler error:
+> "A member named 'textTheme' is defined in 'extension ContextExtensionss 
+> on BuildContext' (from **get** package) and 'extension BuildContextExt on 
+> BuildContext' (from **onu_devkit**), and neither is more specific."
+
+### Rule
+**Never use `context.textTheme` or `context.colorScheme` in this project.**
+
+Always access theme data the Flutter-native way:
+```dart
+// ✅ Correct — always do this
+final theme = Theme.of(context);
+final colorScheme = theme.colorScheme;
+
+theme.textTheme.bodySmall
+theme.textTheme.titleMedium
+colorScheme.primary
+colorScheme.onSurface
+
+// ❌ Never do this — ambiguous between get and onu_devkit
+context.textTheme.bodySmall
+context.colorScheme.primary
+```
+
+### Why not just remove the conflict?
+- `get` ships `ContextExtensionss` and it cannot be tree-shaken
+- `onu_devkit` is our own package — but fixing it there breaks other 
+  projects that don't use `get`
+- `Theme.of(context)` is the Flutter-native approach and works 
+  everywhere regardless of packages installed
+
 ## Architecture
 ```
 lib
@@ -112,6 +149,6 @@ This project is currently evolving as I build more Flutter applications. Ideas, 
 
 ## Screenshots
 
-| Button | Text Input |
-|--------|------------|
-| ![Button](docs/images/app_button_example.png) | ![Input](docs/images/input_example.png) |
+| Button | Text Input | Swipe Action Button |
+|--------|------------|---------------------|
+| ![Button](docs/images/app_button_example.png) | ![Input](docs/images/input_example.png) | ![Swipe Action Button](docs/images/swipe_action_button_example.png) |

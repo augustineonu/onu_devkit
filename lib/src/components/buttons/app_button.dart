@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:onu_devkit/src/extensions/extensions.dart';
 import 'package:onu_devkit/src/tokens/app_radius.dart';
 
 class AppButton extends StatelessWidget {
@@ -10,7 +11,7 @@ class AppButton extends StatelessWidget {
   final Color? loadingColor;
   final double? fontSize;
   final FontWeight? fontWeight;
-  final double borderRadius;
+  final double? borderRadius;
   final double? width;
   final double? height;
   final EdgeInsetsGeometry? padding;
@@ -46,6 +47,8 @@ class AppButton extends StatelessWidget {
     final Color resolvedBg = backgroundColor ?? theme.colorScheme.primary;
     final Color resolvedText = textColor ?? theme.colorScheme.onPrimary;
 
+    final radius = borderRadius ?? context.appTheme.buttonRadius;
+
     return GestureDetector(
       onTap: isDisabled ? null : onPressed,
       child: Container(
@@ -54,7 +57,7 @@ class AppButton extends StatelessWidget {
         padding: padding ?? EdgeInsets.symmetric(vertical: 10, horizontal: 24),
         decoration: BoxDecoration(
           color: isDisabled ? resolvedBg.withValues(alpha: 0.6) : resolvedBg,
-          borderRadius: BorderRadius.circular(borderRadius),
+          borderRadius: BorderRadius.circular(radius),
           border: borderColor != null ? Border.all(color: borderColor!) : null,
         ),
         child: isLoading
